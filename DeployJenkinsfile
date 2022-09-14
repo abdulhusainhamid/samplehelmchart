@@ -37,7 +37,7 @@ pipeline {
     stage('Deploy a Helm Chart') {
       steps {
           sh "sudo helm package samplehelmchart"
-          sh 'helm install "$HelmChartName" ./samplehelmchart-0.1.0.tgz'
+          sh 'helm install "$HelmChartName" ./samplehelmchart-0.1.0.tgz' || true
       }
     }
 
