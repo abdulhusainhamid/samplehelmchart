@@ -3,7 +3,7 @@ pipeline {
   agent { label 'master' }
 
   parameters {
-    string(name: 'HelmChartName', defaultValue: 'SampleHelmChart1', description: 'Number')
+    string(name: 'HelmChartName', defaultValue: 'SampleHelmChart1', description: 'Helm Chart Name')
   }
 
   environment {  
