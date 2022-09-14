@@ -37,7 +37,8 @@ pipeline {
     stage('Deploy a Helm Chart') {
       steps {
           sh "sudo helm package samplehelmchart"
-          sh 'helm install "$HelmChartName" samplehelmchart/samplehelmchart'
+          sh "sudo chmod +x samplehelmchart-0.1.0.tgz"
+          sh 'helm upgrade "$HelmChartName" samplehelmchart-0.1.0.tgz'
       }
     }
 
