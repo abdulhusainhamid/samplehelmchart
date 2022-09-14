@@ -1,0 +1,48 @@
+pipeline {
+
+  agent { label 'master' }
+
+  parameters {
+    string(name: 'NO', defaultValue: '1', description: 'Number')
+  }
+
+  environment {  
+    ENV_VAR1 = 'abcd'
+  }
+
+  stages('Create a Helm Chart') {
+
+    stage('Display Current Directory and files') {
+      steps {
+        sh 'pwd'
+        sh 'ls -l'
+      }
+    }
+
+    stage('Display variables') {
+      steps {
+          sh 'echo NO="$NO"'
+          sh 'echo ENV_VAR1="$ENV_VAR1"'
+      }
+    }
+
+    stage('Create a Helm Chart') {
+      steps {
+          sh "sudo helm package samplehelmchart"
+      }
+    }
+
+    stage(Push Helm Chart to Storage Repo') {
+      steps {
+          // Login to repository
+          // Push helm chart to repository
+      }
+    }
+    
+    stage('Remove Directory') {
+      steps {
+          sh "rm -rf *"  
+      }
+    }
+  }
+}
