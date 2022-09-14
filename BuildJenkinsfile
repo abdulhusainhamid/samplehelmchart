@@ -32,7 +32,7 @@ pipeline {
       }
     }
 
-    stage(Push Helm Chart to Storage Repo') {
+    stage('Push Helm Chart to Storage Repo') {
       steps {
           // Login to repository
           // Push helm chart to repository
