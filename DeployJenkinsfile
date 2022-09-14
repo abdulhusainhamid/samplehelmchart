@@ -28,20 +28,24 @@ pipeline {
 
     stage('Download Helm Chart from Storage Repo') {
       steps {
-          // Login to repository
-          // Pull helm chart from repository
+          //sh 'sudo helm uninstall samplehelmchart'
+          sh 'echo "Login to repository"'
+          sh 'echo "Download helm chart from repository"'
       }
     }
 
     stage('Deploy a Helm Chart') {
       steps {
+          sh "sudo helm package samplehelmchart"
           sh "sudo helm install samplehelmchart"
       }
     }
 
     stage('Verify Helm Chart Deployment') {
       steps {
-          // Check if helm chart is deployed successfully
+          sh 'echo "Check if helm chart is deployed successfully"'
+          sh 'helm list'
+          sh 'kubectl get pods'
       }
     }
     
