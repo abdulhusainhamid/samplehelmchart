@@ -3,7 +3,7 @@ pipeline {
   agent { label 'master' }
 
   parameters {
-    string(name: 'NO', defaultValue: '1', description: 'Number')
+    string(name: 'HelmChartName', defaultValue: 'SampleHelmChart1', description: 'Number')
   }
 
   environment {  
@@ -21,7 +21,7 @@ pipeline {
 
     stage('Display variables') {
       steps {
-          sh 'echo NO="$NO"'
+          sh 'echo HelmChartName="$HelmChartName"'
           sh 'echo ENV_VAR1="$ENV_VAR1"'
       }
     }
@@ -37,7 +37,7 @@ pipeline {
     stage('Deploy a Helm Chart') {
       steps {
           sh "sudo helm package samplehelmchart"
-          sh "sudo helm install samplehelmchart"
+          sh 'sudo helm install "$HelmChartName" samplehelmchart'
       }
     }
 
