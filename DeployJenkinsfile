@@ -38,16 +38,8 @@ pipeline {
       steps {
           sh "sudo helm package samplehelmchart"
           sh "sudo chmod +x samplehelmchart-0.1.0.tgz"
-          sh "helm repo update"
-          sh 'helm upgrade "$HelmChartName" samplehelmchart-0.1.0.tgz'
-      }
-    }
-
-    stage('Verify Helm Chart Deployment') {
-      steps {
-          sh 'echo "Check if helm chart is deployed successfully"'
-          sh 'helm list'
-          sh 'kubectl get pods'
+          sh "sudo helm repo update"
+          sh '( sudo helm install "$HelmChartName" samplehelmchart-0.1.0.tgz ) || ( sleep 1 )'
       }
     }
     
