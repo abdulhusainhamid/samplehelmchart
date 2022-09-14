@@ -34,8 +34,8 @@ pipeline {
 
     stage('Push Helm Chart to Storage Repo') {
       steps {
-          // Login to repository
-          // Push helm chart to repository
+          sh 'echo "Login to repository"'
+          sh 'echo "Push helm chart to repository"'
       }
     }
     
