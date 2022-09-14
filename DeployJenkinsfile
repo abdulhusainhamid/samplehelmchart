@@ -38,7 +38,14 @@ pipeline {
       steps {
           sh "sudo helm package samplehelmchart"
           sh "sudo chmod +x samplehelmchart-0.1.0.tgz"
-          sh '( sudo helm install "$HelmChartName" samplehelmchart-0.1.0.tgz ) || ( sleep 1 )'
+          sh '( helm install "$HelmChartName" samplehelmchart-0.1.0.tgz ) || ( sleep 1 )'
+      }
+    }
+    
+    stage('Verify Helm Chart Deployment') {
+      steps {
+          sh "sudo helm list"
+          sh "sudo kubectl get pods"
       }
     }
     
