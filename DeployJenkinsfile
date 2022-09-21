@@ -4,6 +4,7 @@ pipeline {
 
   parameters {
     string(name: 'HelmChartName', defaultValue: 'SampleHelmChart1', description: 'Helm Chart Name')
+    string(name: 'replicaCount', defaultValue: '1', description: 'Number of replicaes')
   }
 
   environment {  
@@ -38,7 +39,7 @@ pipeline {
       steps {
           sh "sudo helm package samplehelmchart"
           sh "sudo chmod +x samplehelmchart-0.1.0.tgz"
-          sh 'sudo helm install "$HelmChartName" samplehelmchart-0.1.0.tgz'
+          sh 'sudo helm install "$HelmChartName" --set replicaCount="$replicaCount" samplehelmchart-0.1.0.tgz'
       }
     }
     
