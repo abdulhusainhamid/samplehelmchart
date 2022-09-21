@@ -8,6 +8,7 @@ pipeline {
 
   environment {  
     ENV_VAR1 = 'abcd'
+    chartname = 'samplehelmchart'
   }
 
   stages('Create a Helm Chart') {
@@ -28,7 +29,7 @@ pipeline {
 
     stage('Create a Helm Chart') {
       steps {
-          sh "sudo helm package samplehelmchart"
+          sh 'sudo helm package "$chartname"'
       }
     }
 
