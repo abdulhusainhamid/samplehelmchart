@@ -24,6 +24,7 @@ pipeline {
       steps {
           sh 'echo HelmChartName="$HelmChartName"'
           sh 'echo ENV_VAR1="$ENV_VAR1"'
+          sh 'echo replicaCount="$replicaCount"'
       }
     }
 
